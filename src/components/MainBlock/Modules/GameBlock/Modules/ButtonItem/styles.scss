@@ -14,12 +14,37 @@
     }
   }
 
-  &:focus,
   &:active {
-    opacity: .9;
+    opacity: 1;
+  }
+
+  &._disable {
+    cursor: default;
+    opacity: 0.7;
+
+    &:hover,
+    &:active {
+      opacity: 0.7;
+    }
   }
 
   &._active {
     opacity: 1;
+    cursor: default;
+
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
+  }
+
+  &._active._disable {
+    opacity: 1;
+    cursor: default;
+
+    &:hover,
+    &:active {
+      opacity: 1;
+    }
   }
 }

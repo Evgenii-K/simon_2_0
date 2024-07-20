@@ -20,6 +20,8 @@ import MainBlock from './components/MainBlock/MainBlock.vue';
   min-height: 100vh;
   display: grid;
   grid-template-rows: max-content 1fr;
+  gap: 4rem;
   color: $tc-primary;
+  padding: 4rem 0;
 }
 </style>
