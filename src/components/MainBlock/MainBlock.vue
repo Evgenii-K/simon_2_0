@@ -1,14 +1,12 @@
 <template>
-  <h1>Simon Game</h1>
-
-  <div class="main__wrapper">
+  <div class="main-block container">
     <game-block />
-    <statistic />
+    <statistic-table />
   </div>
 </template>
 
 <script setup lang="ts">
 import './styles.scss'
 import GameBlock from './Modules/GameBlock/GameBlock.vue'
-import Statistic from './Modules/Statistic/Statistic.vue'
+import StatisticTable from './Modules/StatisticTable/StatisticTable.vue'
 </script>

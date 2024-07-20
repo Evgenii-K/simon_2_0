@@ -1,0 +1,49 @@
+// ----------BREAKPOINTS
+$br-mobile: 360;
+$br-tablet: 768;
+$br-desktop: 1024;
+$br-desktop-middle: 1360;
+$br-desktop-max: 1920;
+
+// ungrouped colors
+$c-black: #000;
+$c-border: #ebedf2;
+$c-white: #fff;
+$c-gray: #ebedf2;
+$dark-gray: #CED1D8;
+$c-blue: #0F709A;
+$c-dark-blue: #022839;
+
+// accent colors
+$ac-red: #ff2626;
+$ac-red-hover: #D70000;
+$ac-violet: #c01b78;
+$ac-orange: #ef7f1a;
+
+// text-colors
+$tc-primary: #2c3e50;
+$tc-secondary: $c-white;
+$tc-tertiary: #9098a0;
+$tc-red: $ac-red;
+
+// icon colors
+$ic-black: $c-black;
+$ic-red: $ac-red;
+$ic-white: $c-white;
+$ic-gray: #9098a0;
+
+// bg-colors
+$bgc-primary: $c-white;
+$bgc-secondary: #f5f7fc;
+$bgc-black-orange: #191716;
+$bgc-green: #d9f2ed;
+
+// shadow colors
+$sc-gray: #ACBAC8;
+$sc-black: #19191A26;
+
+// transition-time
+$tt-base: .15s;
+$tt-secondary: .4s;
+$tt-tertiary: .3s;
+$tt-quaternary: .6s;

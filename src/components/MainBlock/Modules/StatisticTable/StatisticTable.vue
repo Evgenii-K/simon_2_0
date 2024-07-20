@@ -1,5 +1,5 @@
 <template>
-  <div class="statistic">
+  <div class="statistic-table">
 
   </div>
 </template>
