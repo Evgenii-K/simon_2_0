@@ -10,5 +10,5 @@
 <script setup lang="ts">
 import './styles.scss'
 import GameBlock from './Modules/GameBlock/GameBlock.vue'
-import Statistic from './Modules/Statistic/Statistic.vue';
+import Statistic from './Modules/Statistic/Statistic.vue'
 </script>
