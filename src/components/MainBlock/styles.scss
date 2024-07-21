@@ -1,3 +1,5 @@
+@import '/src/styles/variables.scss';
+
 .main-block {
   width: 100%;
   height: 100%;
@@ -7,4 +9,14 @@
   justify-content: center;
   flex-direction: column;
   gap: 3rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity $tt-base ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }

@@ -54,6 +54,7 @@ const useController = ({ emits, difficultyLevel, blocksCountLevel }: props) => {
       emits('updateStatistic', {
         dateTime: getDate(),
         score: currentScore.value,
+        speedLevel: difficultyLevel.value
       })
       clearTimeouts()
       nextStepTimeout = setTimeout(() => {

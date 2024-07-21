@@ -23,5 +23,6 @@ import MainBlock from './components/MainBlock/MainBlock.vue';
   gap: 4rem;
   color: $tc-primary;
   padding: 4rem 0;
+  position: relative;
 }
 </style>

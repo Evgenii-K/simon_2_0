@@ -5,6 +5,8 @@
       :speedLevel="speedLevel"
       @updateSpeedLevel="updateSpeedLevel"
       @updateBlocksCountLevel="updateBlocksCountLevel"
+      @openTable="toggleTable"
+      @openSkinsTable="toggleSkinsTable"
     />
     <game-block
       :maxScore="maxScore"
@@ -12,9 +14,32 @@
       :blocksCountLevel="blocksCountLevel"
       @updateStatistic="setRecordTable"
     />
-    <statistic-table
-      :recordTable="recordTable"
-    />
+    <Transition name="fade">
+      <popup-block
+        v-if="isStaticTableOpened"
+        @closePopup="toggleTable"
+        title="Game Score"
+      >
+        <statistic-table
+          :recordTable="recordTable"
+        />
+      </popup-block>
+    </Transition>
+    <Transition name="fade">
+      <popup-block
+        v-if="isSkinsTableOpened"
+        @closePopup="toggleSkinsTable"
+        title="Change Skin"
+      >
+        <skins-table
+          :skinsFileTable="skinsFileTable"
+          @addSkin="addSkin"
+          @clearSkin="clearSkin"
+          @applySkin="applySkin"
+          @removeSkin="removeSkin"
+        />
+      </popup-block>
+    </Transition>
   </section>
 </template>
 
@@ -23,11 +48,12 @@ import { onMounted } from 'vue';
 import './styles.scss'
 import GameBlock from './Modules/GameBlock/GameBlock.vue'
 import StatisticTable from './Modules/StatisticTable/StatisticTable.vue'
+import SkinsTable from './Modules/SkinsTable/SkinsTable.vue'
 import ControlsBlock from './Modules/ControlsBlock/ControlsBlock.vue'
+import PopupBlock from './Modules/PopupBlock/PopupBlock.vue'
 import useController from './controller'
 
-    // TODO: статистика
-    // TODO: скин игрового поля
+  // TODO: адаптив
 
 const {
   maxScore,
@@ -38,7 +64,16 @@ const {
   speedLevel,
   difficultyLevel,
   blocksCountLevel,
-  updateBlocksCountLevel
+  updateBlocksCountLevel,
+  toggleTable,
+  isStaticTableOpened,
+  addSkin,
+  toggleSkinsTable,
+  isSkinsTableOpened,
+  skinsFileTable,
+  clearSkin,
+  removeSkin,
+  applySkin
 } = useController()
 
 onMounted(() => {
