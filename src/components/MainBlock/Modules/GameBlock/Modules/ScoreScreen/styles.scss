@@ -107,7 +107,7 @@
     }
   }
 
-  @include br-desktop-max {
+  @include br-tablet {
     --size: 20rem;
 
     &__title {

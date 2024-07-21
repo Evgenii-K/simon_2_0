@@ -2,10 +2,6 @@
 @import './mixins.scss';
 
 html {
-  max-height: 100dvh;
-
-  overflow: hidden;
-
   font-size: calc(100vw / $br-mobile * 10);
 
   @include br-tablet {

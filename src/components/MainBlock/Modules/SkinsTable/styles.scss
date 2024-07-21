@@ -92,7 +92,7 @@
     }
   }
 
-  @include br-desktop-max {
+  @include br-desktop {
     &__ceil {
       padding: .4rem 2rem;
     }

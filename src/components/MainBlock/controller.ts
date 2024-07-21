@@ -1,6 +1,11 @@
 import { computed, ref } from 'vue'
 import { ERecordType, IRecord, ISkin } from './types';
 
+enum ELevalCount {
+  STANDARD = 4,
+  EXTENDED = 6
+}
+
 const useController = () => {
   const recordTable = ref<IRecord[]>([])
   const app = document.getElementById('app')
@@ -34,12 +39,12 @@ const useController = () => {
     speedLevel.value++
   }
 
-  const blocksCountLevel = ref<number>(6)
+  const blocksCountLevel = ref<number>(ELevalCount.STANDARD)
   const updateBlocksCountLevel = () => {
-    if (blocksCountLevel.value === 4) {
-      blocksCountLevel.value = 6
+    if (blocksCountLevel.value === ELevalCount.STANDARD) {
+      blocksCountLevel.value = ELevalCount.EXTENDED
     } else {
-      blocksCountLevel.value = 4
+      blocksCountLevel.value = ELevalCount.STANDARD
     }
   }
 

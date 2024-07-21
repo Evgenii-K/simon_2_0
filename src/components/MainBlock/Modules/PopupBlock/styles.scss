@@ -55,7 +55,7 @@
     cursor: pointer;
   }
 
-  @include br-desktop-max {
+  @include br-desktop {
     --content-width: 40rem;
 
     &__wrapper {
