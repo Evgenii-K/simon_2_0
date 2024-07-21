@@ -1,5 +1,5 @@
 <template>
-  <div class="game-block">
+  <div :class="['game-block', `game-block--${buttonsForGame.length}`]">
     <score-screen
       :max-score="maxScore"
       :current-score="currentScore"
@@ -9,7 +9,7 @@
       @startGame="startGame"
     />
     <button-item
-      v-for="button in buttons"
+      v-for="button in buttonsForGame"
       :key="button.id"
       :color="button.color"
       :is-active="button.isActive"
@@ -24,17 +24,34 @@ import './styles.scss'
 import ScoreScreen from './Modules/ScoreScreen/ScoreScreen.vue'
 import ButtonItem from './Modules/ButtonItem/ButtonItem.vue'
 import useController from './controller'
-import { defineProps } from 'vue'
+import { defineProps, defineEmits, toRef, watch } from 'vue'
 
-defineProps({
+const emits = defineEmits(['updateStatistic'])
+
+const props = defineProps({
   maxScore: { type: Number, default: 0 },
+  difficultyLevel: { type: Number, default: 1000 },
+  blocksCountLevel: { type: Number, default: 4 }
+})
+
+watch(() => props.difficultyLevel, () => {
+  resetGame()
+})
+
+watch(() => props.blocksCountLevel, () => {
+  resetGame()
 })
 
 const {
   currentScore,
-  buttons,
+  buttonsForGame,
   onButtonClick,
   gameState,
   startGame,
-} = useController()
+  resetGame
+} = useController({
+  emits,
+  difficultyLevel: toRef(props, 'difficultyLevel'),
+  blocksCountLevel: toRef(props, 'blocksCountLevel'),
+})
 </script>

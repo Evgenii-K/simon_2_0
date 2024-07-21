@@ -4,7 +4,7 @@
   >
     <div class="score-screen__title">Score</div>
     <div class="score-screen__number">Current: {{ currentScore }}</div>
-    <div class="score-screen__number">Max: {{ maxScore ? maxScore : currentScore }}</div>
+    <div class="score-screen__number">Max: {{ !!maxScore ? maxScore : currentScore }}</div>
     <div class="score-screen__buttons">
       <button
         class="score-screen__button score-screen__button--single"

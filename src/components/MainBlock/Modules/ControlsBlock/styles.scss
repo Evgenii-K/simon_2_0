@@ -1,0 +1,68 @@
+@import '/src/styles/variables.scss';
+
+.controls-block {
+  --size: 40rem;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.4rem;
+  width: var(--size);
+  background: $bgc-green;
+  border-radius: 3.2rem;
+  border: .3rem solid $c-black;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 40px 40px 90px rgba(0, 0, 0, .2), inset 10px 10px 30px rgba(0, 0, 0, .5), 20px 20px 30px rgba(0, 0, 0, .4), 40px 40px 60px rgba(0, 0, 0, .4);
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    border-radius: 3rem;
+    display: block;
+    background: transparent;
+    border: .3rem solid white;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    width: 105%;
+    height: 105%;
+    border-radius: 3rem;
+    display: block;
+    background: transparent;
+    position: absolute;
+    top: -2.5%;
+    left: -2.5%;
+    box-shadow: -3px -3px 9px rgba(255,255,255,.8);
+    pointer-events: none;
+  }
+
+  &__button {
+    background-color: $c-black;
+    color: $c-white;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 500;
+    transition: background-color $tt-base;
+    position: relative;
+    user-select: none;
+    height: 3rem;
+    
+    @media (hover: hover) {
+      &:hover {
+        background-color: $c-dark-blue;
+      }
+    }
+    
+    &:active {
+      background-color: $c-light-blue;
+    }
+  }
+}

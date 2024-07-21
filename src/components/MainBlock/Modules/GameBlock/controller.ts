@@ -1,6 +1,18 @@
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, Ref } from 'vue'
+import moment from 'moment';
+import { Howl } from 'howler';
 
-const useController = () => {
+type props = {
+  emits: (event: 
+    'updateStatistic'
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    , ...args: any) => void,
+  difficultyLevel: Ref<number>,
+  blocksCountLevel: Ref<number>,
+}
+
+const useController = ({ emits, difficultyLevel, blocksCountLevel }: props) => {
+  const errorSound = new Howl({src: [require('/src/assets/sound/error.mp3')], html5:true})
   const currentScore = ref<number>(0)
   const gameState = reactive({
     isStarted: false,
@@ -12,30 +24,45 @@ const useController = () => {
   let runStepTimeout: ReturnType<typeof setTimeout>
   let runShowColorTimeout: ReturnType<typeof setTimeout>
   let nextStepTimeout: ReturnType<typeof setTimeout>
-  const difficultyLevel = 1000
   const waitBeforeNextStep = 1000
 
   const buttons = reactive([
-    { id: 0, color: '#ffea37', isActive: false },
-    { id: 1, color: '#4b3edd', isActive: false },
-    { id: 2, color: '#dd4b3e', isActive: false },
-    { id: 3, color: '#3edd4b', isActive: false }
+    { id: 0, color: '#ffea37', isActive: false, sound: new Howl({src: [require('/src/assets/sound/simonSound1.mp3')], html5:true}) },
+    { id: 1, color: '#4b3edd', isActive: false, sound: new Howl({src: [require('/src/assets/sound/simonSound2.mp3')], html5:true}) },
+    { id: 2, color: '#dd4b3e', isActive: false, sound: new Howl({src: [require('/src/assets/sound/simonSound3.mp3')], html5:true}) },
+    { id: 3, color: '#3edd4b', isActive: false, sound: new Howl({src: [require('/src/assets/sound/simonSound4.mp3')], html5:true}) },
+    { id: 4, color: '#9098a0', isActive: false, sound: new Howl({src: [require('/src/assets/sound/simonSound1.mp3')], html5:true}) },
+    { id: 5, color: '#c01b78', isActive: false, sound: new Howl({src: [require('/src/assets/sound/simonSound2.mp3')], html5:true}) },
   ])
 
+  const buttonsForGame = computed(() => {
+    return buttons.slice(0, blocksCountLevel.value)
+  })
+
+  const getDate = () => {
+    return moment().format('DD.MM.YYYY HH:mm:ss')
+  }
+
   const onButtonClick = (id: number) => {
-    if (gameState.isLoading || !gameState.isStarted) return
-    // TODO: звук нажатия на кнопку
+    if (gameState.isLoading) return
+    buttons[id].sound.play()
+    if (!gameState.isStarted) return
     if (id !== randomState[step.value]) {
+      errorSound.play()
       stopGame()
       gameState.isError = true
+      emits('updateStatistic', {
+        dateTime: getDate(),
+        score: currentScore.value,
+      })
+      clearTimeouts()
       nextStepTimeout = setTimeout(() => {
         gameState.isError = false
       }, waitBeforeNextStep * 2)
-      // TODO: записать в рекорды
       return
     }
 
-    step.value += 1
+    step.value++
 
     if (step.value < stepsCount.value) return
     clearTimeouts()
@@ -53,7 +80,7 @@ const useController = () => {
 
   const addNextStep = () => {
     step.value = 0
-    const randomColor = Math.floor(Math.random() * 4)
+    const randomColor = Math.floor(Math.random() * blocksCountLevel.value)
     randomState.push(randomColor)
   }
 
@@ -68,9 +95,9 @@ const useController = () => {
     
     showColor()
     runStepTimeout = setTimeout(() => {
-      gameStep.value += 1
+      gameStep.value++
       runStep()
-    }, difficultyLevel * 2)
+    }, difficultyLevel.value * 2)
   }
 
   const showColor = () => {
@@ -78,12 +105,13 @@ const useController = () => {
     buttons.forEach(button => {
       if (button.id === randomState[gameStep.value]) {
         button.isActive = true
+        button.sound.play()
       }
     })
 
     runShowColorTimeout = setTimeout(() => {
       buttons.forEach(button => button.isActive = false)
-    }, difficultyLevel)
+    }, difficultyLevel.value)
   }
 
   const startGame = () => {
@@ -105,6 +133,12 @@ const useController = () => {
     if (nextStepTimeout) clearTimeout(nextStepTimeout)
   }
 
+  const resetGame = () => {
+    currentScore.value = 0
+    gameState.isError = false
+    stopGame()
+  }
+
   const stopGame = () => {
     clearTimeouts()
     buttons.forEach(button => button.isActive = false)
@@ -117,10 +151,12 @@ const useController = () => {
 
   return {
     currentScore,
-    buttons,
     onButtonClick,
     gameState,
     startGame,
+    blocksCountLevel,
+    buttonsForGame,
+    resetGame
   }
 }
 
