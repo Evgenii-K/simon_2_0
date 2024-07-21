@@ -1,11 +1,14 @@
 @import '/src/styles/variables.scss';
+@import '/src/styles/mixins.scss';
 
 .score-screen {
+  --size: 16rem;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 20rem;
-  height: 20rem;
+  width: var(--size);
+  height: var(--size);
   margin: auto;
   background: $bgc-green;
   border: .6rem solid $c-black;
@@ -55,13 +58,13 @@
   }
 
   &__title {
-    font-size: 2.4rem;
+    font-size: 1.6rem;
     font-weight: 700;
     align-self: end;
   }
 
   &__number {
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-weight: 500;
     align-self: center;
 
@@ -101,6 +104,18 @@
     
     &:active {
       background-color: $c-light-blue;
+    }
+  }
+
+  @include br-desktop-max {
+    --size: 20rem;
+
+    &__title {
+      font-size: 2.4rem;
+    }
+
+    &__name {
+      font-size: 2rem;
     }
   }
 }

@@ -9,9 +9,10 @@ type props = {
     , ...args: any) => void,
   difficultyLevel: Ref<number>,
   blocksCountLevel: Ref<number>,
+  speedLevel: Ref<number>,
 }
 
-const useController = ({ emits, difficultyLevel, blocksCountLevel }: props) => {
+const useController = ({ emits, difficultyLevel, blocksCountLevel, speedLevel }: props) => {
   const errorSound = new Howl({src: [require('/src/assets/sound/error.mp3')], html5:true})
   const currentScore = ref<number>(0)
   const gameState = reactive({
@@ -54,7 +55,7 @@ const useController = ({ emits, difficultyLevel, blocksCountLevel }: props) => {
       emits('updateStatistic', {
         dateTime: getDate(),
         score: currentScore.value,
-        speedLevel: difficultyLevel.value
+        speedLevel: speedLevel.value + 1
       })
       clearTimeouts()
       nextStepTimeout = setTimeout(() => {

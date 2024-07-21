@@ -1,0 +1,26 @@
+@import '/src/styles/variables.scss';
+@import './mixins.scss';
+
+html {
+  max-height: 100dvh;
+
+  overflow: hidden;
+
+  font-size: calc(100vw / $br-mobile * 10);
+
+  @include br-tablet {
+    font-size: calc(100vw / $br-tablet * 10);
+  }
+
+  @include br-desktop {
+    font-size: calc(100vw / $br-desktop * 10);
+  }
+
+  @include br-desktop-middle {
+    font-size: calc(100vw / $br-desktop-middle * 10);
+  }
+
+  @include br-desktop-max {
+    font-size: 10px;
+  }
+}

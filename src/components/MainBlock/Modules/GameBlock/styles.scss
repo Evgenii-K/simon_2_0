@@ -1,10 +1,9 @@
 @import '/src/styles/variables.scss';
+@import '/src/styles/mixins.scss';
 
 .game-block {
-  --size: 40rem;
-
-  width: var(--size);
-  height: var(--size);
+  width: 31.6rem;
+  height: 31.6rem;
   border-radius: 8%;
   background-color: $bgc-black-orange;
   position: relative;
@@ -24,5 +23,11 @@
   &--6 {
     grid-template-rows: repeat(3, 1fr);
     gap: 1rem;
+    height: 34rem;
+  }
+
+  @include br-desktop-max {
+    width: 40rem;
+    height: 40rem;
   }
 }

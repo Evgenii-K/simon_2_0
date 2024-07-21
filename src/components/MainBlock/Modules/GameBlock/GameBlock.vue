@@ -31,7 +31,8 @@ const emits = defineEmits(['updateStatistic'])
 const props = defineProps({
   maxScore: { type: Number, default: 0 },
   difficultyLevel: { type: Number, default: 1000 },
-  blocksCountLevel: { type: Number, default: 4 }
+  blocksCountLevel: { type: Number, default: 4 },
+  speedLevel: { type: Number, default: 0 },
 })
 
 watch(() => props.difficultyLevel, () => {
@@ -53,5 +54,6 @@ const {
   emits,
   difficultyLevel: toRef(props, 'difficultyLevel'),
   blocksCountLevel: toRef(props, 'blocksCountLevel'),
+  speedLevel: toRef(props, 'speedLevel'),
 })
 </script>

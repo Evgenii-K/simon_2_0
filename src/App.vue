@@ -20,9 +20,14 @@ import MainBlock from './components/MainBlock/MainBlock.vue';
   min-height: 100vh;
   display: grid;
   grid-template-rows: max-content 1fr;
-  gap: 4rem;
+  gap: 2rem;
   color: $tc-primary;
-  padding: 4rem 0;
+  padding: 2rem 1.6rem;
   position: relative;
+
+  @include br-desktop-max {
+    padding: 4rem 0;
+    gap: 4rem;
+  }
 }
 </style>

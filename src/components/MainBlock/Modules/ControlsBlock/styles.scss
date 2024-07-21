@@ -1,8 +1,10 @@
 @import '/src/styles/variables.scss';
+@import '/src/styles/mixins.scss';
 
 .controls-block {
-  --size: 40rem;
+  --size: 100%;
 
+  height: 6.4rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -48,12 +50,12 @@
     width: 100%;
     height: 100%;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 500;
     transition: background-color $tt-base;
     position: relative;
     user-select: none;
-    height: 3rem;
+    height: 2.6rem;
     
     @media (hover: hover) {
       &:hover {
@@ -63,6 +65,15 @@
     
     &:active {
       background-color: $c-light-blue;
+    }
+  }
+
+  @include br-desktop-max {
+    --size: 40rem;
+
+    &__button {
+      font-size: 1.4rem;
+      height: 3rem;
     }
   }
 }

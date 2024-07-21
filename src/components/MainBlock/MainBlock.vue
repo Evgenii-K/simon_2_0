@@ -1,5 +1,5 @@
 <template>
-  <section class="main-block container">
+  <section class="main-block">
     <controls-block 
       :blocksCountLevel="blocksCountLevel"
       :speedLevel="speedLevel"
@@ -11,6 +11,7 @@
     <game-block
       :maxScore="maxScore"
       :difficultyLevel="difficultyLevel[speedLevel]"
+      :speedLevel="speedLevel"
       :blocksCountLevel="blocksCountLevel"
       @updateStatistic="setRecordTable"
     />

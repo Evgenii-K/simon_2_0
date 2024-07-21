@@ -1,7 +1,8 @@
 @import '/src/styles/variables.scss';
+@import '/src/styles/mixins.scss';
 
 .popup-block {
-  --content-width: 40rem;
+  --content-width: 100%;
 
   position: fixed;
   z-index: 100;
@@ -19,7 +20,7 @@
     background-color: rgba($bgc-green, .5);
     display: flex;
     justify-content: center;
-    padding: 4rem;
+    padding: 2rem;
     backdrop-filter: blur(1rem);
   }
 
@@ -52,5 +53,13 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+  }
+
+  @include br-desktop-max {
+    --content-width: 40rem;
+
+    &__wrapper {
+      padding: 4rem;
+    }
   }
 }
