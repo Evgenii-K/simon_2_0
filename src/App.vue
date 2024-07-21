@@ -25,6 +25,7 @@ import MainBlock from './components/MainBlock/MainBlock.vue';
   color: $tc-primary;
   padding: 2rem 1.6rem;
   position: relative;
+  background-size: contain;
 
   @include br-desktop-max {
     padding: 4rem 0;
