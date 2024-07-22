@@ -3,6 +3,7 @@
     :class="['button-item', { '_active': isActive, '_disable': disable }]"
     :style="{ 'background-color': color }"
     @click="$emit('onButtonClick')"
+    ontouchstart=""
   />
 </template>
 

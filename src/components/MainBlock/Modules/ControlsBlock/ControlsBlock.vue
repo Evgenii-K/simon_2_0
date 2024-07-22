@@ -1,9 +1,9 @@
 <template>
   <div class="controls-block">
-    <button class="controls-block__button" @click="$emit('openTable')">Statistic</button>
-    <button class="controls-block__button" @click="$emit('updateSpeedLevel')">Speed level {{ speedLevel + 1 }}</button>
-    <button class="controls-block__button" @click="$emit('updateBlocksCountLevel')">Blocks level {{ blocksCountLevel }}</button>
-    <button class="controls-block__button" @click="$emit('openSkinsTable')">Change Skin</button>
+    <button class="controls-block__button" ontouchstart="" @click="$emit('openTable')">Statistic</button>
+    <button class="controls-block__button" ontouchstart="" @click="$emit('updateSpeedLevel')">Speed level {{ speedLevel + 1 }}</button>
+    <button class="controls-block__button" ontouchstart="" @click="$emit('updateBlocksCountLevel')">Blocks level {{ blocksCountLevel }}</button>
+    <button class="controls-block__button" ontouchstart="" @click="$emit('openSkinsTable')">Change Skin</button>
   </div>
 </template>
 

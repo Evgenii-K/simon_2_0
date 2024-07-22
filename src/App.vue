@@ -27,6 +27,18 @@ import MainBlock from './components/MainBlock/MainBlock.vue';
   position: relative;
   background-size: contain;
 
+  @include br-tablet {
+    @media(orientation: landscape) {
+      height: 100dvh;
+      min-height: auto;
+    }
+  }
+
+  @include br-desktop {
+    height: 100%;
+    min-height: 100vh;
+  }
+
   @include br-desktop-max {
     padding: 4rem 0;
     gap: 4rem;

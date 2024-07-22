@@ -9,6 +9,7 @@
       <button
         class="score-screen__button score-screen__button--single"
         @click="$emit('startGame')"
+        ontouchstart=""
       >
         {{ isStarted ? 'Stop' : 'Start' }}
       </button>
